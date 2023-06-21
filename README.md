@@ -1,3 +1,28 @@
+
+
+                                    app.js
+                                      |
+                                      |
+                                   PlantPage
+                                      /|\
+                                     / | \
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # React Mock Code Challenge: Plantsy
 
 ## Demo
