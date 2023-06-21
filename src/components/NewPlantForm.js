@@ -14,7 +14,7 @@ function NewPlantForm({ addPlantToState }) {
   // same as above but using only one state and function to track the form 
   // const [ form, setForm ] = useState( {} )
   // const updateForm = e => {
-  //   setForm( { ...form, [e.target.id]: e.target.value } )
+  //   setForm( { ...form, [e.target.name]: e.target.value } )
   // }
 
   const attemptNewPlant = e => {
