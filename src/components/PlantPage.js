@@ -1,55 +1,29 @@
 import { useState, useEffect } from "react";
+import { getPlants } from '../tools/api'
 import NewPlantForm from "./NewPlantForm";
 import PlantList from "./PlantList";
 import Search from "./Search";
 
+
 function PlantPage() {
 
-	const [ plantsArray, setPlants ] = useState( [] )
-
-	const addPlantToState = theNewPlantObj => {
-		setPlants( [ ...plantsArray, theNewPlantObj ] )
-	}
-
-	useEffect( () => {
-		fetch( 'http://localhost:6001/plants' )
-			.then( r => r.json() )
-			.then( plantsData => setPlants( plantsData ) )
-	}, [] )
-
+	const [ plants, setPlants ] = useState( [] )
+	const addPlant = plant => setPlants( [ ...plants, plant ] )
+	useEffect( () => { getPlants().then( setPlants ) }, [] )
 
 	const [ search, setSearch ] = useState( '' )
+	const updateSearch = query => setSearch( query.toLowerCase() )
 	
-	const updateSearchState = someNewString => {
-		setSearch( someNewString.toLowerCase() )
-	}
-
-	const byName = ({ name }) => {
-		/* This callback function we're giving as an argument to filter 
-		   NEEDS to have a return value of true or false, so filter will know
-		   what to put in the filtered array */
-		return name.toLowerCase().includes( search )
-	}
-
-	const byPrice = ({ price }) => {
-		/* This callback function we're giving as an argument to filter 
-		   NEEDS to have a return value of true or false, so filter will know
-		   what to put in the filtered array */
-		return price.toString().includes( search )
-	}
-
-	const byNameOrPrice = pObj => {
-		return byPrice( pObj ) || byName( pObj )
-	}
-
-
-	const filteredPlants = plantsArray.filter( byNameOrPrice )
-
+	const byName = ({ name }) => name.toLowerCase().includes( search )
+	const byPrice = ({ price }) => price.toString().includes( search )
+	const byNameOrPrice = pObj => byPrice( pObj ) || byName( pObj )
+	
+	const filteredPlants = plants.filter( byNameOrPrice )
 
 	return (
 		<main>
-			<NewPlantForm addPlantToState={ addPlantToState } />
-			<Search updateSearchState={ updateSearchState } />
+			<NewPlantForm addPlant={ addPlant } />
+			<Search updateSearch={ updateSearch } />
 			<PlantList plants={ filteredPlants } />
 		</main>
 	);

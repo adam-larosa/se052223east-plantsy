@@ -1,18 +1,13 @@
-import React from "react";
+import { Children } from "react";
 import PlantCard from "./PlantCard";
 
 function PlantList({ plants }) {
 
-  const plantComponents = plants.map( plantObject => {
-
-    return <PlantCard key={ plantObject.id } plant={ plantObject } />
-
-  } )
-
+  const plantComponents = plants.map( plant => <PlantCard plant={ plant } /> )
 
   return (
     <ul className="cards">
-      { plantComponents }
+      { Children.toArray( plantComponents ) }
     </ul>
   );
 }

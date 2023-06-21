@@ -1,8 +1,8 @@
 import React from "react";
 
-function Search({ updateSearchState }) {
+function Search({ updateSearch }) {
 
-  const handleSearch = e => updateSearchState( e.target.value )
+  const handleSearch = e => updateSearch( e.target.value )
   
   return (
     <div className="searchbar">

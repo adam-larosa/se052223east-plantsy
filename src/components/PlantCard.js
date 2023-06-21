@@ -1,12 +1,10 @@
 import { useState } from "react";
 
+
 function PlantCard({ plant }) {
 
   const [ isInStock, setIsInStock ] = useState( true )
-
-  const handleClick = () => {
-    setIsInStock( !isInStock )
-  }
+  const handleClick = () => setIsInStock( s => !s )
 
   return (
     <li className="card">
