@@ -17,11 +17,28 @@ function PlantPage() {
 			.then( plantsData => setPlants( plantsData ) )
 	}, [] )
 
+
+	const [ search, setSearch ] = useState( '' )
+	
+	const updateSearchState = someNewString => {
+		setSearch( someNewString )
+	}
+
+	const byName = plantObj => {
+		/* This callback function we're giving as an argument to filter 
+		   NEEDS to have a return value of true or false, so filter will know
+		   what to put in the filtered array */
+		return plantObj.name.toLowerCase().includes( search.toLowerCase() )
+	}
+
+	const filteredPlants = plantsArray.filter( byName )
+
+
 	return (
 		<main>
 			<NewPlantForm addPlantToState={ addPlantToState } />
-			<Search />
-			<PlantList plants={ plantsArray } />
+			<Search updateSearchState={ updateSearchState } />
+			<PlantList plants={ filteredPlants } />
 		</main>
 	);
 }
