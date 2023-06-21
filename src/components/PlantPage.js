@@ -21,17 +21,29 @@ function PlantPage() {
 	const [ search, setSearch ] = useState( '' )
 	
 	const updateSearchState = someNewString => {
-		setSearch( someNewString )
+		setSearch( someNewString.toLowerCase() )
 	}
 
-	const byName = plantObj => {
+	const byName = ({ name }) => {
 		/* This callback function we're giving as an argument to filter 
 		   NEEDS to have a return value of true or false, so filter will know
 		   what to put in the filtered array */
-		return plantObj.name.toLowerCase().includes( search.toLowerCase() )
+		return name.toLowerCase().includes( search )
 	}
 
-	const filteredPlants = plantsArray.filter( byName )
+	const byPrice = ({ price }) => {
+		/* This callback function we're giving as an argument to filter 
+		   NEEDS to have a return value of true or false, so filter will know
+		   what to put in the filtered array */
+		return price.toString().includes( search )
+	}
+
+	const byNameOrPrice = pObj => {
+		return byPrice( pObj ) || byName( pObj )
+	}
+
+
+	const filteredPlants = plantsArray.filter( byNameOrPrice )
 
 
 	return (

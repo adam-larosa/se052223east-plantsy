@@ -41,6 +41,18 @@
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
       "price": 55
+    },
+    {
+      "name": "Hungry Hunter",
+      "image": "https://www.nhm.ac.uk/content/dam/nhmwww/discover/carnivorous-plants/attenborough-pitcher-plant-breakout.jpg.thumb.768.768.jpg",
+      "price": "99.95",
+      "id": 8
+    },
+    {
+      "name": "Terrible Tom",
+      "image": "https://ychef.files.bbci.co.uk/976x549/p09q6pp6.jpg",
+      "price": "29.95",
+      "id": 9
     }
   ]
 }
